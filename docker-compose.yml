@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kk_api
+    image: bavuongco10/hello-nestjs-elb:latest
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+    ports:
+      - 777:4000
+
+    networks:
+      - hello-nestjs-elb
+    restart: always
+
+networks:
+  hello-nestjs-elb:
+    driver: bridge
